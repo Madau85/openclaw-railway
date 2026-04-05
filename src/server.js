@@ -100,7 +100,12 @@ const AUTH_GROUPS = [
       { label: 'API Key', value: 'anthropic-api-key', flag: '--anthropic-api-key' },
       { label: 'Setup Token', value: 'setup-token',
         flag: ['--auth-choice', 'token', '--token-provider', 'anthropic'],
-        secretFlag: '--token' }
+        secretFlag: '--token' },
+      { label: 'Claude CLI (OAuth)', value: 'anthropic-cli',
+        noSecret: true, terminalOnly: true,
+        hint: 'Claude CLI is pre-installed. Switch to Terminal Mode and run:',
+        hintCmd: 'openclaw onboard --auth-choice anthropic-cli',
+        helpUrl: 'https://docs.openclaw.ai/concepts/oauth#anthropic-claude-cli' }
     ]
   },
   {
@@ -110,9 +115,11 @@ const AUTH_GROUPS = [
     emoji: '\u{1F916}',
     options: [
       { label: 'API Key', value: 'openai-api-key', flag: '--openai-api-key' },
-      { label: 'Codex Subscription', value: 'openai-codex',
-        flag: ['--auth-choice', 'openai-codex'],
-        noSecret: true }
+      { label: 'ChatGPT / Codex (OAuth)', value: 'openai-codex',
+        noSecret: true, terminalOnly: true,
+        hint: 'OpenAI Codex is pre-installed. Switch to Terminal Mode and run:',
+        hintCmd: 'openclaw onboard --auth-choice openai-codex',
+        helpUrl: 'https://docs.openclaw.ai/concepts/oauth#openai-codex' }
     ]
   },
   {
