@@ -1683,3 +1683,20 @@ server.listen(PORT, '0.0.0.0', () => {
     console.log('No configuration found. Visit /onboard to configure OpenClaw.');
   }
 });
+// Start the HTTP server
+const server = createServer(app);
+
+server.listen(PORT, () => {
+  console.log(`OpenClaw wrapper server listening on port ${PORT}`);
+  console.log(`Health check available at http://localhost:${PORT}/health`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('SIGTERM received, shutting down gracefully...');
+  await closeAllSessions();
+  server.close(() => {
+    console.log('Server closed');
+    process.exit(0);
+  });
+});
